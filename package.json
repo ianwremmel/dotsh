@@ -1,7 +1,7 @@
 {
   "name": "@ianwremmel/dotsh",
   "version": "0.0.0-development",
-  "description": "",
+  "description": "Dotfiles applicator and machine bootstrapper for Unixy OSes",
   "bin": {},
   "main": "./src/index.js",
   "repository": {

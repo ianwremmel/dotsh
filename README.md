@@ -5,6 +5,7 @@
 <!-- (optional) Put banner here -->
 
 <!-- PROJ: Badges Start -->
+
 [![license](https://img.shields.io/github/license/ianwremmel/dotsh.svg)](https://github.com/ianwremmel/dotsh/blob/master/LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![npm (scoped)](https://img.shields.io/npm/v/@ianwremmel/dotsh.svg)](https://www.npmjs.com/package/@ianwremmel/dotsh)
@@ -14,29 +15,87 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 [![CircleCI](https://circleci.com/gh/ianwremmel/dotsh.svg?style=svg)](https://circleci.com/gh/ianwremmel/dotsh)
+
 <!-- PROJ: Badges End -->
 
-> 
+> Dotfiles applicator and machine bootstrapper for Unixy OSes
 
 ## Table of Contents
 
--    [Install](#install)
--    [Usage](#usage)
--    [Maintainers](#maintainers)
--    [Contribute](#contribute)
--    [License](#license)
+<!-- toc -->
+
+<!-- tocstop -->
 
 ## Install
 
-```bash
-npm install @ianwremmel/dotsh
-```
+You can get dotsh in one of several ways:
+
+-   The canonical, but perhaps least useful, method is to install it from npm.
+
+    ```bash
+    npm install @ianwremmel/dotsh
+    ```
+
+-   Download the latest
+    [release](https://github.com/ianwremmel/dotsh/releases/latest) from GitHub.
+
+-   Run the one-line bootstrapper:
+
+    ```bash
+    curl -fsSL -o- \
+    https://raw.githubusercontent.com/ianwremmel/dotsh/master/curl.sh | bash
+    ```
+
+    > This is the most convenient method, of course, and while a common pattern
+    > amongst similar projects, has a number of security concerns you should
+    > consider. Piping arguably untrusted code to bash might be considered
+    > risky.
 
 ## Usage
 
-```bash
-# TODO
-```
+### `dotsh bootstrap`
+
+Bootstraps (or rebootstraps) a machine, creating a config repo if needed.
+
+### `dotsh init`
+
+Creates a config repo without making any alterations to the machine.
+
+## Opinions
+
+Though the whole point of this project is to separate control from
+configuration, several opinions (for lack of a better term) applied herein
+cannot be avoided. Some of these are because they are necessary for dotsh to
+work and some are because we don't see a reason why you wouldn't just want to do
+some of these things and giving you the choice is more effort than it's worth.
+
+You're going to get the following packages:
+
+-   bash@4
+-   bash-completion
+-   coreutils
+-   findutils
+-   gnu-sed
+-   vim
+-   grep
+-   sreen
+-   git
+-   git-lfs
+-   jq
+-   yq
+-   python
+-   python@2
+-   ruby
+-   qlmarkdown
+-   qlstephen
+-   quicklook-json
+
+You're going to be logged into GitHub via `.netrc` and your global git
+credentials will be set. We'll attempt to use your GitHub no-reply address if
+you have one.
+
+Beyond that, many opinions will be encoded in your home directory dotfiles, but
+you should be able to change most of them.
 
 ## Maintainer
 
@@ -48,4 +107,5 @@ PRs Welcome
 
 ## License
 
-[MIT](LICENSE) &copy; [Ian Remmel](https://github.com/ianwremmel) 2018 until at least now
+[MIT](LICENSE) &copy; [Ian Remmel](https://github.com/ianwremmel) 2018 until at
+least now
