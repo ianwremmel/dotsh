@@ -5,3 +5,5 @@ extends:
   - "plugin:@ianwremmel/ianwremmel/node"
 parserOptions:
   sourceType: "module"
+rules:
+  no-console: off

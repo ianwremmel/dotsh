@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+/* eslint-disable import/unambiguous */
+
+require('esm')(module)('../src/cli');
+
+/* eslint-enable import/unambiguous */
