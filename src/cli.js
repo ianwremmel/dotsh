@@ -1,3 +1,5 @@
+import path from 'path';
+
 import yargs from 'yargs';
 import pkgUp from 'pkg-up';
 import fs from 'mz/fs';
@@ -7,6 +9,7 @@ import fs from 'mz/fs';
     yargs
       .version(await loadVersion())
       .help()
+      .commandDir(path.resolve(__dirname, './commands'))
       .demandCommand().argv;
   } catch (err) {
     console.error(err);

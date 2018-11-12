@@ -1,0 +1,68 @@
+# This is a basic Brewfile that upgrades many of the GNU or POSIX utilties
+# bundled with your mac to more modern versions. Feel free to add sections to
+# this file, but be cautious about altering the required and strongly
+# recommended sections
+
+cask_args appdir: '/Applications'
+
+tap 'caskroom/cask'
+
+##
+## Required
+##
+## These packages are required for the rest the dotfiles to function
+##
+
+# Install Bash 4.
+brew 'bash'
+brew 'bash-completion@2'
+
+brew 'jq'
+brew 'yq'
+
+##
+## Strongly Recommended
+##
+## Not necessarily required for functionality, but unclear if things will work
+## without these upgrades
+##
+
+# Install GNU core utilities (those that come with macOS are outdated).
+# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
+brew 'coreutils'
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+brew 'findutils', args: ['with-default-names']
+# Install GNU `sed`, overwriting the built-in `sed`.
+brew 'gnu-sed', args: ['with-default-names']
+
+##
+## Recommended
+##
+## You can probably do without these, but without a specific reason to skip
+## them, they should probably stay
+##
+
+# Install `wget` with IRI support.
+brew 'wget', args: ['with-iri']
+
+# Install more recent versions of some macOS tools.
+brew 'vim', args: ['with-override-system-vi']
+brew 'grep', args: ['with-default-names']
+brew 'screen', args: ['with-default-names']
+brew 'git'
+brew 'git-lfs'
+
+##
+## User
+##
+## Put your packages here
+##
+
+##
+## Work
+##
+## Put packages needed for your current job here. This will make it easier to
+## remember what you need for your personal work and what you can remove if your
+## job changes.
+##
+
