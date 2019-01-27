@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring
+# wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+
+if [ "$(uname)" == 'Darwin' ]; then
+  # Add tab completion for `defaults read|write NSGlobalDomain`
+  complete -W "NSGlobalDomain" defaults
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+  # shellcheck disable=SC1091
+  source /etc/bash_completion
+fi
+
+# Bash completion in Home folder
+if [ -d "$HOME/.bash_completion.d" ]; then
+	for FILE in "$HOME/.bash_completion.d"/*
+	do
+    # shellcheck disable=SC1090
+		source "$FILE"
+	done
+fi
+
+if hash brew 2>/dev/null ; then
+  BREW_PREFIX="${BREW_HOME:-$(brew --prefix)}"
+
+  # Load completion config from homebrew's "bash-completion"
+  if [ -f "$BREW_PREFIX/etc/bash_completion" ]; then
+    # shellcheck disable=SC1090
+   source "$BREW_PREFIX/etc/bash_completion"
+  fi
+
+  # Load completion config from homebrew's "bash-completion@2"
+  if [ -f "$BREW_PREFIX/share/bash-completion/bash_completion" ]; then
+    # shellcheck disable=SC1090
+    source "$BREW_PREFIX/share/bash-completion/bash_completion"
+  fi
+fi

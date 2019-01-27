@@ -7,3 +7,4 @@ parserOptions:
   sourceType: "module"
 rules:
   no-console: off
+  require-jsdoc: off

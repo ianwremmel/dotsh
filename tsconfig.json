@@ -9,7 +9,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "resolveJsonModule": true,
-    "strict": false,
+    "strict": true,
     "target": "es2016",
     "types": ["node"]
   },

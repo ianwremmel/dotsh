@@ -17,6 +17,9 @@ tap 'caskroom/cask'
 brew 'bash'
 brew 'bash-completion@2'
 
+# Install `wget` with IRI support.
+brew 'wget', args: ['with-iri']
+
 brew 'jq'
 brew 'yq'
 
@@ -28,7 +31,7 @@ brew 'yq'
 ##
 
 # Install GNU core utilities (those that come with macOS are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
+# Don't forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew 'coreutils'
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew 'findutils', args: ['with-default-names']
@@ -41,9 +44,6 @@ brew 'gnu-sed', args: ['with-default-names']
 ## You can probably do without these, but without a specific reason to skip
 ## them, they should probably stay
 ##
-
-# Install `wget` with IRI support.
-brew 'wget', args: ['with-iri']
 
 # Install more recent versions of some macOS tools.
 brew 'vim', args: ['with-override-system-vi']

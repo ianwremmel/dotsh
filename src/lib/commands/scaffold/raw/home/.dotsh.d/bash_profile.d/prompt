@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Enable color if possible
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+  export TERM='gnome-256color';
+elif infocmp xterm-256color >/dev/null 2>&1; then
+  export TERM='xterm-256color';
+fi;
+
+# The default PS1 for macos 10.14 is `\h:\W \u\$`
+export PS1="\\u@\\h \\t \\w \\$ "

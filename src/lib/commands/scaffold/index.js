@@ -14,5 +14,6 @@ export default async function scaffold(options) {
 
   // TODO update current shell
   // scaffold out work-specific folders
+  // TODO download current pathogen to home/.vim/autoload/pathogen.vim
+  // TODO editorconfig bundle to home/.vim/bundle/editorconfig
 }
-// TODO how does one spell scaffold

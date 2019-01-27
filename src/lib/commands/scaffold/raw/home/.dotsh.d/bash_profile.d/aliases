@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# OS X has no `md5sum`, so use `md5` as a fallback
+command -v md5sum > /dev/null || alias md5sum='md5'
+
+# macOS has no `sha1sum`, so use `shasum` as a fallback
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Enable aliases to be sudoed
+alias sudo='sudo '
+
+# Make pbpaste/pbcopy available on non-macos systems
+if [ "$(uname)" != 'Darwin' ]; then
+	alias pbcopy='xsel --clipboard --input'
+	alias pbpaste='xsel --clipboard --output'
+fi
+
+# Force grep to use color when possible
+alias grep='/usr/bin/grep --color=auto'

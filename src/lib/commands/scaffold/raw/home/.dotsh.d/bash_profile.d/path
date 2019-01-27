@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+export PATH;
+
+# Add Homebrew bins to PATH
+if hash brew 2>/dev/null ; then
+  BREW_PREFIX="${BREW_HOME:-$(brew --prefix)}"
+  # So, this is cheating a bit and making assumptions about how coreutils gets
+  # installed but it saves nearly 1.5 seconds when opening a new terminal
+  # BREW_PREFIX_COREUTILS=$(brew --prefix coreutils)
+  BREW_PREFIX_COREUTILS=$BREW_PREFIX/opt/coreutils
+
+  PATH=$BREW_PREFIX/bin:$BREW_PREFIX/sbin:$PATH;
+  if [ -d "$BREW_PREFIX_COREUTILS/libexec/gnubin" ]; then
+    PATH=$PATH:$BREW_PREFIX_COREUTILS/libexec/gnubin;
+  fi
+fi
+
+# Include ~/bin in path
+PATH="$HOME/bin:$PATH"

@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# A lot of config instructions from homebrew formulae recommend invoke
+# `$(brew --prefix)` to ensure portability. Unfortunately, `brew --prefix` adds
+# 10 to 20 ms per invocation to your dotfiles. We'll set it here once, and you
+# can keep your scripts portable with
+#
+# `${BREW_HOME:-$(brew --prefix)}`
+#
+export BREW_HOME
+BREW_HOME=$(brew --prefix)
+
+# Set a reasonable ulimit because Apple
+ulimit -n 8192
+
+# Load non-bash specific config
+if [ -f "$HOME/.profile" ]; then
+  # shellcheck disable=SC1090
+  source "$HOME/.profile"
+fi
+
+# Load SSH keys
+ssh-add -K > /dev/null 2> /dev/null
+
+# Load the non-interactive shell dotfiles, and then some:
+for FILE in $(dir "$HOME/.dotsh.d/bash_profile.d"); do
+  # shellcheck disable=SC1090
+	[ -r "${FILE}" ] && [ -f "${FILE}" ] && source "${FILE}"
+done
+unset FILE
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+	shopt -s "$option" 2> /dev/null
+done

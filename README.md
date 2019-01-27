@@ -53,13 +53,40 @@ You can get dotsh in one of several ways:
 
 ## Usage
 
-### `dotsh bootstrap`
+### `dotsh apply`
 
-Bootstraps (or rebootstraps) a machine, creating a config repo if needed.
+Applies (or reapplies) your config to a machine. You should run `dotsh scaffold`
+somewhere first and customize your config.
 
-### `dotsh init`
+### `dotsh scaffold`
 
 Creates a config repo without making any alterations to the machine.
+
+## Customizing The Scaffold
+
+This repo contains a basic set of dotfiles and inspired by (though heavily
+modified) [Mathias Bynens dotfiles](). After running the `scaffold` command,
+you'll have a repo containing a config that you can customize to your heart's
+content.
+
+### Layout
+
+-   .profile, .bash_profile, .bashrc
+-   .dotsh.d
+-   .dotsh.d/bash_profile.d
+-   Brewfile
+
+### Things you can't change
+
+-   You're getting homebrew
+-   .profile, .bash_profile, .bashrc, .dotsh.d/bash_profile
+
+### Alterations to how you're used to doing things
+
+-   `"${BREW_HOME:-$(brew --prefix)}"`
+-   git aliases (fixup, autosquash, pfl)
+-   git rerere
+-   vim no arrow keys
 
 ## Opinions
 
